@@ -1,0 +1,712 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "用户中心API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/roles": {
+            "get": {
+                "description": "角色列表",
+                "tags": [
+                    "角色"
+                ],
+                "summary": "角色列表",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "default": 1,
+                        "description": "pageIndex",
+                        "name": "pageIndex",
+                        "in": "query"
+                    },
+                    {
+                        "type": "number",
+                        "default": 10,
+                        "description": "pageSize",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "关键词",
+                        "name": "keyWord",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.PagedResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/sysRole.SysRole"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "角色列表",
+                "tags": [
+                    "角色"
+                ],
+                "summary": "添加角色",
+                "parameters": [
+                    {
+                        "description": "添加角色",
+                        "name": "role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sysRole.AddRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/{id}": {
+            "get": {
+                "description": "根据id获取角色信息",
+                "tags": [
+                    "角色"
+                ],
+                "summary": "根据id获取角色信息",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/sysRole.SysRole"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "根据id更新角色",
+                "tags": [
+                    "角色"
+                ],
+                "summary": "根据id更新角色",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "description": "更新角色",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sysRole.UpdateRoleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "根据id更新角色",
+                "tags": [
+                    "角色"
+                ],
+                "summary": "根据id删除角色",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "用户列表",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户列表",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "default": 1,
+                        "description": "pageIndex",
+                        "name": "pageIndex",
+                        "in": "query"
+                    },
+                    {
+                        "type": "number",
+                        "default": 10,
+                        "description": "pageSize",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "关键词",
+                        "name": "keyWord",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.PagedResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/sysUser.SysUser"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "角色用户",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "添加用户",
+                "parameters": [
+                    {
+                        "description": "添加用户",
+                        "name": "role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sysUser.AddUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "description": "根据id获取用户信息",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "根据id获取用户信息",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/sysUser.SysUser"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "根据id更新用户",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "根据id更新用户",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "description": "更新用户",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sysUser.UpdateUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "删除用户",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "删除用户",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}/attr/password": {
+            "put": {
+                "description": "更新用户密码",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "更新用户密码",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "description": "更新用户密码",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sysUser.UpdatePasswordByIdRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}/roles": {
+            "put": {
+                "description": "更新用户角色",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "更新用户角色",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "description": "更新用户密码",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sysUser.UpdatePasswordByIdRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.PagedResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "sysRole.AddRoleRequest": {
+            "type": "object",
+            "required": [
+                "available",
+                "description",
+                "name"
+            ],
+            "properties": {
+                "available": {
+                    "description": "是否可用 0 不可用 1 可用",
+                    "type": "integer"
+                },
+                "description": {
+                    "description": "角色描述",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "角色名称",
+                    "type": "string"
+                }
+            }
+        },
+        "sysRole.RoleWithChecked": {
+            "type": "object",
+            "properties": {
+                "available": {
+                    "type": "integer"
+                },
+                "checked": {
+                    "type": "boolean"
+                },
+                "create_time": {
+                    "description": "添加时间",
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "角色名",
+                    "type": "string"
+                },
+                "update_time": {
+                    "description": "更新时间",
+                    "type": "string"
+                }
+            }
+        },
+        "sysRole.SysRole": {
+            "type": "object",
+            "properties": {
+                "available": {
+                    "type": "integer"
+                },
+                "create_time": {
+                    "description": "添加时间",
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "角色名",
+                    "type": "string"
+                },
+                "update_time": {
+                    "description": "更新时间",
+                    "type": "string"
+                }
+            }
+        },
+        "sysRole.UpdateRoleRequest": {
+            "type": "object",
+            "required": [
+                "available",
+                "description",
+                "name"
+            ],
+            "properties": {
+                "available": {
+                    "description": "是否可用 0 不可用 1 可用",
+                    "type": "integer"
+                },
+                "description": {
+                    "description": "角色描述",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "角色名称",
+                    "type": "string"
+                }
+            }
+        },
+        "sysUser.AddUserRequest": {
+            "type": "object",
+            "required": [
+                "nickname",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "email": {
+                    "description": "邮箱地址",
+                    "type": "string"
+                },
+                "mobile": {
+                    "description": "手机号",
+                    "type": "string"
+                },
+                "nickname": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "登录密码",
+                    "type": "string"
+                },
+                "qq": {
+                    "description": "QQ",
+                    "type": "string"
+                },
+                "reg_ip": {
+                    "description": "注册IP",
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "sysUser.SysUser": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "description": "头像地址",
+                    "type": "string"
+                },
+                "birthday": {
+                    "description": "生日",
+                    "type": "string"
+                },
+                "blog": {
+                    "description": "个人博客地址",
+                    "type": "string"
+                },
+                "company": {
+                    "description": "公司",
+                    "type": "string"
+                },
+                "create_time": {
+                    "description": "注册时间",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "邮箱地址",
+                    "type": "string"
+                },
+                "experience": {
+                    "description": "经验值",
+                    "type": "integer"
+                },
+                "gender": {
+                    "description": "性别",
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "last_login_ip": {
+                    "description": "最近登录IP",
+                    "type": "string"
+                },
+                "last_login_time": {
+                    "description": "最近登录时间",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "地址",
+                    "type": "string"
+                },
+                "login_count": {
+                    "description": "登录次数",
+                    "type": "integer"
+                },
+                "mobile": {
+                    "description": "手机号",
+                    "type": "string"
+                },
+                "nickname": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "notification": {
+                    "description": "通知：(1：通知显示消息详情，2：通知不显示详情)",
+                    "type": "integer"
+                },
+                "password": {
+                    "description": "登录密码",
+                    "type": "string"
+                },
+                "privacy": {
+                    "description": "隐私（1：公开，0：不公开）",
+                    "type": "integer"
+                },
+                "qq": {
+                    "description": "QQ",
+                    "type": "string"
+                },
+                "reg_ip": {
+                    "description": "注册IP",
+                    "type": "string"
+                },
+                "remark": {
+                    "description": "用户备注",
+                    "type": "string"
+                },
+                "score": {
+                    "description": "金币值",
+                    "type": "integer"
+                },
+                "source": {
+                    "description": "用户来源",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "用户状态",
+                    "type": "integer"
+                },
+                "update_time": {
+                    "description": "更新时间",
+                    "type": "string"
+                },
+                "user_type": {
+                    "description": "超级管理员、管理员、普通用户",
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "用户唯一表示(第三方网站)",
+                    "type": "string"
+                }
+            }
+        },
+        "sysUser.UpdatePasswordByIdRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "new_password": {
+                    "description": "新密码",
+                    "type": "string"
+                },
+                "new_password_again": {
+                    "description": "新密码",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "当前密码",
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "sysUser.UpdateUserRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "description": "邮箱地址",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "mobile": {
+                    "description": "手机号",
+                    "type": "string"
+                },
+                "nickname": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "qq": {
+                    "description": "QQ",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
