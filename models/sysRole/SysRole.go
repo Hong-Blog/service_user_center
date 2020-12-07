@@ -2,44 +2,10 @@ package sysRole
 
 import (
 	"errors"
-	"github.com/guregu/null"
 	"log"
 	"usercenter/db"
-	"usercenter/models"
 	"usercenter/models/sysUser"
 )
-
-type SysRole struct {
-	Id          int64       `json:"id"`
-	Name        null.String `json:"name" swaggertype:"string"` // 角色名
-	Description null.String `json:"description" swaggertype:"string"`
-	Available   null.Int    `json:"available" swaggertype:"integer"`
-	CreateTime  null.Time   `json:"create_time" db:"create_time" swaggertype:"string"` // 添加时间
-	UpdateTime  null.Time   `json:"update_time" db:"update_time" swaggertype:"string"` // 更新时间
-}
-
-type GetAllRoleRequest struct {
-	models.PagedRequest
-	KeyWord string `json:"key_word"`
-}
-
-type RoleWithChecked struct {
-	SysRole
-	Checked bool `json:"checked"`
-}
-
-type AddRoleRequest struct {
-	Name        string `json:"name" swaggertype:"string" binding:"required"`        // 角色名称
-	Description string `json:"description" swaggertype:"string" binding:"required"` // 角色描述
-	Available   *int   `json:"available" swaggertype:"integer" binding:"required"`  // 是否可用 0 不可用 1 可用
-}
-
-type UpdateRoleRequest struct {
-	Id          int64  `json:"id"`
-	Name        string `json:"name" swaggertype:"string" binding:"required"`        // 角色名称
-	Description string `json:"description" swaggertype:"string" binding:"required"` // 角色描述
-	Available   *int   `json:"available" swaggertype:"integer" binding:"required"`  // 是否可用 0 不可用 1 可用
-}
 
 func GetAllRole(request GetAllRoleRequest) (list []SysRole, count int) {
 	dataSql := `
